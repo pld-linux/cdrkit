@@ -16,25 +16,25 @@ BuildRequires:	cmake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Cdrecord allows you to create CD's on a CD-Recorder (SCSI/ATAPI).
+Cdrkit allows you to create CD's on a CD-Recorder (SCSI/ATAPI).
 Supports data, audio, mixed, multi-session and CD+ discs etc.
 
 %description -l pl
-Cdrecord pozwala tworzyФ CD na nagrywarce CD (SCSI/ATAPI). ObsЁuguje
+Cdrkit pozwala tworzyФ CD na nagrywarce CD (SCSI/ATAPI). ObsЁuguje
 dyski z danymi, d╪wiЙkiem, mieszane, wielosesyjne, CD+ i inne.
 
 %description -l pt_BR
-Cdrecord permite que vocЙ crie CDs em seu gravador de CDs SCSI/ATAPI.
+Cdrkit permite que vocЙ crie CDs em seu gravador de CDs SCSI/ATAPI.
 и possМvel gravar dados, Аudio, misturados, multi-seГЦo e CD+.
 
 %description -l ru
-Cdrecord - это программа для создания аудио и цифровых CD. Cdrecord
+Cdrkit - это программа для создания аудио и цифровых CD. Cdrecord
 работает со многими типами CD-рекордеров разных производителей,
 полностью поддерживает multi-session и сообщает об ошибках в формате,
 пригодном для чтения человеком.
 
 %description -l uk
-Cdrecord - це програма для створення ауд╕о та програмних CD. Cdrecord
+Cdrkit - це програма для створення ауд╕о та програмних CD. Cdrecord
 працю╓ з багатьма типами CD-рекордер╕в р╕зних виробник╕в, повн╕стю
 п╕дтриму╓ multi-session ╕ пов╕домля╓ про помилки у формат╕, придатному
 для читання людиною.
@@ -62,19 +62,19 @@ SCSI bez potrzeby posiadania specjalnego sterownika do tego
 urz╠dzenia.
 
 %description devel -l pt_BR
-O cdrtools contИm uma biblioteca de transporte de dados por SCSI "user
+O cdrkit contИm uma biblioteca de transporte de dados por SCSI "user
 level". A biblioteca SCSI pode ser usada para conversar com qualquer
 dispositivo SCSI sem a necessidade de um driver especial.
 
 %description devel -l ru
-Пакет cdrecord-devel содержит транспортные библиотеки
+Пакет cdrkit-devel содержит транспортные библиотеки
 пользовательского уровня для SCSI, которые могут работать с любым
 SCSI-устройством без специального драйвера для этого устройства.
 Cdrecord может быть легко портирован на любую систему с драйвером
 SCSI-устройства, похожим на драйвер scg.
 
 %description devel -l uk
-Пакет cdrecord-devel м╕стить транспортн╕ б╕бл╕отеки користувацького
+Пакет cdrkit-devel м╕стить транспортн╕ б╕бл╕отеки користувацького
 р╕вня для SCSI, як╕ можуть працювати з будь-яким SCSI-пристро╓м без
 спец╕ального драйвера для цього пристрою. Cdrecord може бути легко
 портований на будь-яку систему з драйвером SCSI-пристроя, схожим на
