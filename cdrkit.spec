@@ -13,6 +13,8 @@ Group:		Applications/System
 Source0:	http://debburn.alioth.debian.org/%{name}-%{version}%{_rc}.tar.gz
 # Source0-md5:	b177ab14fb3e02d4fcdce5c162d075f8
 BuildRequires:	cmake
+BuildRequires:	libcap-devel
+BuildRequires:	libmagic-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
