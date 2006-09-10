@@ -207,6 +207,7 @@ fazer CD-ROMs de boot "El Torito".
 
 %prep
 %setup -q -n %{name}-%{version}%{_rc}
+sed -i -e 's#/etc/default/wodim#%{_sysconfdir}/wodim.conf#g' cdrecord/defaults.c
 
 %build
 %{__make} \
@@ -223,9 +224,13 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_libdir},%{_includedir}/schily/scg}
 	PREFIX=%{_prefix} \
 	DESTDIR=$RPM_BUILD_ROOT
 
+ln -s wodim $RPM_BUILD_ROOT%{_bindir}/cdrecord
+
 install build/*/*.a $RPM_BUILD_ROOT%{_libdir}
 install include/*.h $RPM_BUILD_ROOT%{_includedir}/schily
 install include/scg/*.h $RPM_BUILD_ROOT%{_includedir}/schily/scg
+
+install cdrecord/wodim.dfl $RPM_BUILD_ROOT/etc/wodim.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -235,8 +240,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/ANNOUNCEMENTs/AN-* Changelog doc/READMEs/{README,README.ATAPI,README.DiskT@2}
 %doc doc/READMEs/README.{WORM,audio,cdplus,cdtext,cdrw,clone,copy,mkisofs,multi}
 %doc doc/READMEs/README.{raw,rscsi,sony,verify}
-#%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/wodim.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/wodim.conf
 %attr(755,root,root) %{_bindir}/wodim
+%attr(755,root,root) %{_bindir}/cdrecord
 %attr(755,root,root) %{_sbindir}/rscsi
 %{_mandir}/man1/wodim.1*
 
