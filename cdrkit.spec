@@ -1,4 +1,4 @@
-%define	_rc	pre3
+%define	_rc	pre4
 Summary:	A command line CD/DVD-Recorder
 Summary(es):	Un programa de grabaciСn de CD/DVD
 Summary(pl):	Program do nagrywania pЁyt CD/DVD
@@ -11,7 +11,7 @@ Release:	0.1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://debburn.alioth.debian.org/%{name}-%{version}%{_rc}.tar.gz
-# Source0-md5:	b177ab14fb3e02d4fcdce5c162d075f8
+# Source0-md5:	f475a791cd1d6c82da2dea014a01c9d0
 BuildRequires:	cmake
 BuildRequires:	libcap-devel
 BuildRequires:	libmagic-devel
@@ -26,8 +26,8 @@ Cdrkit pozwala tworzyФ CD na nagrywarce CD (SCSI/ATAPI). ObsЁuguje
 dyski z danymi, d╪wiЙkiem, mieszane, wielosesyjne, CD+ i inne.
 
 %description -l pt_BR
-Cdrkit permite que vocЙ crie CDs em seu gravador de CDs SCSI/ATAPI.
-и possМvel gravar dados, Аudio, misturados, multi-seГЦo e CD+.
+Cdrkit permite que vocЙ crie CDs em seu gravador de CDs SCSI/ATAPI. и
+possМvel gravar dados, Аudio, misturados, multi-seГЦo e CD+.
 
 %description -l ru
 Cdrkit - это программа для создания аудио и цифровых CD. Cdrecord
@@ -49,7 +49,7 @@ Summary(pt_BR):	A biblioteca SCSI libschily
 Summary(ru):	SCSI-библиотека libschily
 Summary(uk):	SCSI-б╕бл╕отека libschily
 Group:		Development/Libraries
-Obsoletes:	cdrecord-devel
+Obsoletes:	wodim-devel
 
 %description devel
 The %{name} distribution contains a SCSI user level transport library.
@@ -69,11 +69,11 @@ level". A biblioteca SCSI pode ser usada para conversar com qualquer
 dispositivo SCSI sem a necessidade de um driver especial.
 
 %description devel -l ru
-Пакет cdrkit-devel содержит транспортные библиотеки
-пользовательского уровня для SCSI, которые могут работать с любым
-SCSI-устройством без специального драйвера для этого устройства.
-Cdrecord может быть легко портирован на любую систему с драйвером
-SCSI-устройства, похожим на драйвер scg.
+Пакет cdrkit-devel содержит транспортные библиотеки пользовательского
+уровня для SCSI, которые могут работать с любым SCSI-устройством без
+специального драйвера для этого устройства. Cdrecord может быть легко
+портирован на любую систему с драйвером SCSI-устройства, похожим на
+драйвер scg.
 
 %description devel -l uk
 Пакет cdrkit-devel м╕стить транспортн╕ б╕бл╕отеки користувацького
@@ -93,7 +93,7 @@ Summary(uk):	Утил╕та для генерац╕╖ файл╕в .WAV з digital audio CD
 Group:		Applications/Sound
 Provides:	cdda2wav
 Obsoletes:	cdda2wav
-Obsoletes:	cdrecord-cdda2wav
+Obsoletes:	wodim-cdda2wav
 
 %description cdda2wav
 A sampling utility for cdrom drives that are capable of sending audio
@@ -138,7 +138,7 @@ CD-плей╓р.
 Summary:	Read/Write data Compact Discs
 Summary(pl):	Odczytuje/Zapisuje dane z PЁyt Kompaktowych
 Group:		Applications/System
-Obsoletes:	cdrecord-readcd
+Obsoletes:	wodim-readcd
 
 %description readcd
 Read/Write data Compact Discs.
@@ -217,45 +217,41 @@ fazer CD-ROMs de boot "El Torito".
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_includedir}/schily/scg}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_libdir},%{_includedir}/schily/scg}
 
 %{__make} install \
+	PREFIX=%{_prefix} \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install build/*/*.a $RPM_BUILD_ROOT%{_libdir}
+install include/*.h $RPM_BUILD_ROOT%{_includedir}/schily
+install include/scg/*.h $RPM_BUILD_ROOT%{_includedir}/schily/scg
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AN-* doc/cdrecord.ps Changelog README README.ATAPI README.DiskT@2
-%doc README.{WORM,audio,cdplus,cdtext,cdrw,clone,copy,linux,mkisofs,multi}
-%doc README.{parallel,raw,rscsi,sony,verify} make_diskt@2.sh
-%doc cdrecord/cdrecord.dfl cdrecord/LICENSE
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/cdrecord.conf
-%attr(755,root,root) %{_bindir}/cdrecord
-%attr(755,root,root) %{_bindir}/scgcheck
+%doc doc/ANNOUNCEMENTs/AN-* Changelog doc/READMEs/{README,README.ATAPI,README.DiskT@2}
+%doc doc/READMEs/README.{WORM,audio,cdplus,cdtext,cdrw,clone,copy,mkisofs,multi}
+%doc doc/READMEs/README.{raw,rscsi,sony,verify}
+#%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/wodim.conf
+%attr(755,root,root) %{_bindir}/wodim
 %attr(755,root,root) %{_sbindir}/rscsi
-%{_mandir}/man1/cdrecord.1*
-%{_mandir}/man1/scgcheck.1*
+%{_mandir}/man1/wodim.1*
 
 %files devel
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
 %{_includedir}/schily
-%{_includedir}/*.h
 
 %files cdda2wav
 %defattr(644,root,root,755)
-%doc cdda2wav/Frontends cdda2wav/HOWTOUSE cdda2wav/OtherProgs
-%doc cdda2wav/README cdda2wav/THANKS cdda2wav/TODO
-%doc cdda2wav/cdda2mp3.new cdda2wav/cdda_links cdda2wav/pitchplay
-%doc cdda2wav/readmult cdda2wav/tracknames.pl cdda2wav/tracknames.txt
-%doc cdda2wav/FAQ
+%doc doc/cdda2wav/*
 %attr(755,root,root) %{_bindir}/cdda2wav
 %attr(755,root,root) %{_bindir}/cdda2mp3
 %attr(755,root,root) %{_bindir}/cdda2ogg
 %{_mandir}/man1/cdda2wav.1*
-%{_mandir}/man1/cdda2mp3.1*
 %{_mandir}/man1/cdda2ogg.1*
 
 %files readcd
@@ -270,6 +266,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/isoinfo
 %attr(755,root,root) %{_bindir}/isovfy
 %attr(755,root,root) %{_bindir}/isodump
+%{_mandir}/man8/isodebug.8*
 %{_mandir}/man8/isoinfo.8*
 %{_mandir}/man8/devdump.8*
 %{_mandir}/man8/isovfy.8*
@@ -277,12 +274,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files mkisofs
 %defattr(644,root,root,755)
-%doc mkisofs/README.compression mkisofs/README.eltorito mkisofs/README
-%doc mkisofs/README.graft_dirs mkisofs/README.hfs_boot mkisofs/README.hfs_magic
-%doc mkisofs/README.hide mkisofs/README.joliet mkisofs/README.mkhybrid
-%doc mkisofs/README.prep_boot mkisofs/README.rootinfo mkisofs/README.session
-%doc mkisofs/README.sort mkisofs/README.sparcboot
+%doc doc/mkisofs/*
 %attr(755,root,root) %{_bindir}/mkisofs
-%attr(755,root,root) %{_bindir}/mkhybrid
 %{_mandir}/man8/mkisofs.8*
-%{_mandir}/man8/mkhybrid.8*
