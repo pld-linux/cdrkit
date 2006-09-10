@@ -49,7 +49,7 @@ Summary(pt_BR):	A biblioteca SCSI libschily
 Summary(ru):	SCSI-библиотека libschily
 Summary(uk):	SCSI-б╕бл╕отека libschily
 Group:		Development/Libraries
-Obsoletes:	wodim-devel
+Obsoletes:	cdrecord-devel
 
 %description devel
 The %{name} distribution contains a SCSI user level transport library.
@@ -93,7 +93,7 @@ Summary(uk):	Утил╕та для генерац╕╖ файл╕в .WAV з digital audio CD
 Group:		Applications/Sound
 Provides:	cdda2wav
 Obsoletes:	cdda2wav
-Obsoletes:	wodim-cdda2wav
+Obsoletes:	cdrecord-cdda2wav
 
 %description cdda2wav
 A sampling utility for cdrom drives that are capable of sending audio
@@ -138,7 +138,7 @@ CD-плей╓р.
 Summary:	Read/Write data Compact Discs
 Summary(pl):	Odczytuje/Zapisuje dane z PЁyt Kompaktowych
 Group:		Applications/System
-Obsoletes:	wodim-readcd
+Obsoletes:	cdrecord-readcd
 
 %description readcd
 Read/Write data Compact Discs.
