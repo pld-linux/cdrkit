@@ -1,4 +1,5 @@
-%define	_rc	pre4
+# TODO:
+# - some obsoletes?
 Summary:	A command line CD/DVD-Recorder
 Summary(es):	Un programa de grabaciСn de CD/DVD
 Summary(pl):	Program do nagrywania pЁyt CD/DVD
@@ -6,12 +7,13 @@ Summary(pt_BR):	Um programa de gravaГЦo de CD/DVD
 Summary(ru):	Программа для записи CD/DVD, запускаемая из командной строки
 Summary(uk):	Програма для запису CD/DVD, яка запуска╓ться з командно╖ стр╕чки
 Name:		cdrkit
-Version:	1.0
+Version:	1.1.0
 Release:	0.1
 License:	GPL v2
 Group:		Applications/System
-Source0:	http://debburn.alioth.debian.org/%{name}-%{version}%{_rc}.tar.gz
-# Source0-md5:	f475a791cd1d6c82da2dea014a01c9d0
+Source0:	http://debburn.alioth.debian.org/%{name}-%{version}.tar.gz
+# Source0-md5:	99e0d20aeb2ff7d556db157cdf998e82
+URL:		http://cdrkit.org/
 BuildRequires:	cmake
 BuildRequires:	libcap-devel
 BuildRequires:	libmagic-devel
@@ -206,8 +208,7 @@ fazer CD-ROMs de boot "El Torito".
 завантажуваних El Torito CD-ROM'╕в.
 
 %prep
-%setup -q -n %{name}-%{version}%{_rc}
-sed -i -e 's#/etc/default/wodim#%{_sysconfdir}/wodim.conf#g' cdrecord/defaults.c
+%setup -q
 
 %build
 %{__make} \
@@ -218,52 +219,54 @@ sed -i -e 's#/etc/default/wodim#%{_sysconfdir}/wodim.conf#g' cdrecord/defaults.c
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_libdir},%{_includedir}/schily/scg}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_libdir},%{_includedir}/cdrkit/usal}
 
 %{__make} install \
 	PREFIX=%{_prefix} \
 	DESTDIR=$RPM_BUILD_ROOT
 
 ln -s wodim $RPM_BUILD_ROOT%{_bindir}/cdrecord
+ln -s icedax $RPM_BUILD_ROOT%{_bindir}/cdda2wav
+ln -s genisoimage $RPM_BUILD_ROOT%{_bindir}/mkisofs
+ln -s readom $RPM_BUILD_ROOT%{_bindir}/readcd
 
 install build/*/*.a $RPM_BUILD_ROOT%{_libdir}
-install include/*.h $RPM_BUILD_ROOT%{_includedir}/schily
-install include/scg/*.h $RPM_BUILD_ROOT%{_includedir}/schily/scg
+install include/*.h $RPM_BUILD_ROOT%{_includedir}/cdrkit
+install include/usal/*.h $RPM_BUILD_ROOT%{_includedir}/cdrkit/usal
 
-install cdrecord/wodim.dfl $RPM_BUILD_ROOT/etc/wodim.conf
+install wodim/wodim.dfl $RPM_BUILD_ROOT%{_sysconfdir}/wodim.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/ANNOUNCEMENTs/AN-* Changelog doc/READMEs/{README,README.ATAPI,README.DiskT@2}
-%doc doc/READMEs/README.{WORM,audio,cdplus,cdtext,cdrw,clone,copy,mkisofs,multi}
-%doc doc/READMEs/README.{raw,rscsi,sony,verify}
+%doc ABOUT FAQ FORK TODO Changelog
+%doc doc/ANNO* doc/README* doc/wodim
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/wodim.conf
 %attr(755,root,root) %{_bindir}/wodim
 %attr(755,root,root) %{_bindir}/cdrecord
-%attr(755,root,root) %{_sbindir}/rscsi
+%attr(755,root,root) %{_sbindir}/netscsid
 %{_mandir}/man1/wodim.1*
 
 %files devel
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-%{_includedir}/schily
+%{_includedir}/cdrkit
 
 %files cdda2wav
 %defattr(644,root,root,755)
-%doc doc/cdda2wav/*
-%attr(755,root,root) %{_bindir}/cdda2wav
+%doc doc/icedax/*
+%attr(755,root,root) %{_bindir}/icedax
 %attr(755,root,root) %{_bindir}/cdda2mp3
 %attr(755,root,root) %{_bindir}/cdda2ogg
-%{_mandir}/man1/cdda2wav.1*
+%{_mandir}/man1/icedax.1*
 %{_mandir}/man1/cdda2ogg.1*
 
 %files readcd
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/readcd
-%{_mandir}/man1/readcd.1*
+%attr(755,root,root) %{_bindir}/read*
+%{_mandir}/man1/read*.1*
 
 %files utils
 %defattr(644,root,root,755)
@@ -280,6 +283,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files mkisofs
 %defattr(644,root,root,755)
-%doc doc/mkisofs/*
+%doc doc/genisoimage/*
 %attr(755,root,root) %{_bindir}/mkisofs
-%{_mandir}/man8/mkisofs.8*
+%attr(755,root,root) %{_bindir}/genisoimage
+%{_mandir}/man8/genisoimage.8*
