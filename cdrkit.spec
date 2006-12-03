@@ -17,6 +17,8 @@ URL:		http://cdrkit.org/
 BuildRequires:	cmake
 BuildRequires:	libcap-devel
 BuildRequires:	libmagic-devel
+Provides:	cdrecord
+Obsoletes:	cdrecord
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
