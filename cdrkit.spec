@@ -1,5 +1,3 @@
-# TODO:
-# - some obsoletes?
 Summary:	A command line CD/DVD-Recorder
 Summary(es):	Un programa de grabaciСn de CD/DVD
 Summary(pl):	Program do nagrywania pЁyt CD/DVD
@@ -8,7 +6,7 @@ Summary(ru):	Программа для записи CD/DVD, запускаемая из командной строки
 Summary(uk):	Програма для запису CD/DVD, яка запуска╓ться з командно╖ стр╕чки
 Name:		cdrkit
 Version:	1.1.0
-Release:	0.2
+Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://debburn.alioth.debian.org/%{name}-%{version}.tar.gz
@@ -95,9 +93,12 @@ Summary(pt_BR):	Cria arquivos tipo WAV a partir de CDs de Аudio
 Summary(ru):	Утилита для получения файлов .WAV с digital audio CD
 Summary(uk):	Утил╕та для генерац╕╖ файл╕в .WAV з digital audio CD
 Group:		Applications/Sound
-Provides:	cdda2wav
+Provides:	cdda2wav = %{epoch}:%{version}-%{release}
+Provides:	cdrecord-cdda2wav = %{epoch}:%{version}-%{release}
+Provides:	cdrtools-cdda2wav = %{epoch}:%{version}-%{release}
 Obsoletes:	cdda2wav
 Obsoletes:	cdrecord-cdda2wav
+Obsoletes:	cdrtools-cdda2wav
 
 %description cdda2wav
 A sampling utility for cdrom drives that are capable of sending audio
@@ -142,7 +143,10 @@ CD-плей╓р.
 Summary:	Read/Write data Compact Discs
 Summary(pl):	Odczytuje/Zapisuje dane z PЁyt Kompaktowych
 Group:		Applications/System
+Provides:	cdrecord-readcd = %{epoch}:%{version}-%{release}
+Provides:	cdrtools-readcd = %{epoch}:%{version}-%{release}
 Obsoletes:	cdrecord-readcd
+Obsoletes:	cdrtools-readcd
 
 %description readcd
 Read/Write data Compact Discs.
@@ -154,6 +158,8 @@ Odczytuje/Zapisuje dane z PЁyt Kompaktowych.
 Summary:	Dumping and verifying iso9660 images
 Summary(pl):	Zrzucanie i weryfikacja obrazСw iso9660
 Group:		Applications/System
+Provides:	cdrtools-utils = %{epoch}:%{version}-%{release}
+Obsoletes:	cdrtools-utils
 
 %description utils
 Utility programs for dumping and verifying iso9660 images.
@@ -172,7 +178,9 @@ Summary(ru):	Создает образ файловой системы ISO9660
 Summary(tr):	ISO9660 dosya sistemi kopyasЩ oluЧturur
 Summary(uk):	Створю╓ образ файлово╖ системи ISO9660
 Group:		Applications/System
+Provides:	cdrtools-mkisofs = %{epoch}:%{version}-%{release}
 Provides:	mkisofs = %{epoch}:%{version}-%{release}
+Obsoletes:	cdrtools-mkisofs
 Obsoletes:	mkisofs
 
 %description mkisofs
