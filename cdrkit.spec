@@ -6,11 +6,12 @@ Summary(ru):	Программа для записи CD/DVD, запускаемая из командной строки
 Summary(uk):	Програма для запису CD/DVD, яка запуска╓ться з командно╖ стр╕чки
 Name:		cdrkit
 Version:	1.1.0
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://debburn.alioth.debian.org/%{name}-%{version}.tar.gz
 # Source0-md5:	99e0d20aeb2ff7d556db157cdf998e82
+Patch0:		%{name}-compat.patch
 URL:		http://cdrkit.org/
 BuildRequires:	cmake
 BuildRequires:	libcap-devel
@@ -219,6 +220,7 @@ fazer CD-ROMs de boot "El Torito".
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__make} \
