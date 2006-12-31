@@ -5,13 +5,12 @@ Summary(pt_BR):	Um programa de gravaГЦo de CD/DVD
 Summary(ru):	Программа для записи CD/DVD, запускаемая из командной строки
 Summary(uk):	Програма для запису CD/DVD, яка запуска╓ться з командно╖ стр╕чки
 Name:		cdrkit
-Version:	1.1.0
-Release:	2
+Version:	1.1.1
+Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://debburn.alioth.debian.org/%{name}-%{version}.tar.gz
-# Source0-md5:	99e0d20aeb2ff7d556db157cdf998e82
-Patch0:		%{name}-compat.patch
+# Source0-md5:	937f87c13ce268522c14daa9ba8fdbf0
 URL:		http://cdrkit.org/
 BuildRequires:	cmake
 BuildRequires:	libcap-devel
@@ -220,7 +219,6 @@ fazer CD-ROMs de boot "El Torito".
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__make} \
@@ -287,15 +285,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/isoinfo
 %attr(755,root,root) %{_bindir}/isovfy
 %attr(755,root,root) %{_bindir}/isodump
-%{_mandir}/man8/isodebug.8*
-%{_mandir}/man8/isoinfo.8*
-%{_mandir}/man8/devdump.8*
-%{_mandir}/man8/isovfy.8*
-%{_mandir}/man8/isodump.8*
+%{_mandir}/man1/isodebug.1*
+%{_mandir}/man1/isoinfo.1*
+%{_mandir}/man1/devdump.1*
+%{_mandir}/man1/isovfy.1*
+%{_mandir}/man1/isodump.1*
 
 %files mkisofs
 %defattr(644,root,root,755)
 %doc doc/genisoimage/*
 %attr(755,root,root) %{_bindir}/mkisofs
 %attr(755,root,root) %{_bindir}/genisoimage
-%{_mandir}/man8/genisoimage.8*
+%{_mandir}/man1/genisoimage.1*
+%{_mandir}/man5/genisoimagerc.5*
