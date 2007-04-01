@@ -12,7 +12,7 @@ Group:		Applications/System
 Source0:	http://debburn.alioth.debian.org/%{name}-%{version}.tar.gz
 # Source0-md5:	eca6f0f6f240785319f758e5c3ca38f6
 URL:		http://cdrkit.org/
-BuildRequires:	cmake
+BuildRequires:	cmake >= 2.4.3
 BuildRequires:	libcap-devel
 BuildRequires:	libmagic-devel
 Provides:	cdrecord
