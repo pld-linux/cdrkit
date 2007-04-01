@@ -5,12 +5,12 @@ Summary(pt_BR.UTF-8):	Um programa de gravação de CD/DVD
 Summary(ru.UTF-8):	Программа для записи CD/DVD, запускаемая из командной строки
 Summary(uk.UTF-8):	Програма для запису CD/DVD, яка запускається з командної стрічки
 Name:		cdrkit
-Version:	1.1.2
+Version:	1.1.3
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://debburn.alioth.debian.org/%{name}-%{version}.tar.gz
-# Source0-md5:	fa9754ce04c610262472d0de270f6804
+# Source0-md5:	eca6f0f6f240785319f758e5c3ca38f6
 URL:		http://cdrkit.org/
 BuildRequires:	cmake
 BuildRequires:	libcap-devel
@@ -285,11 +285,20 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/isoinfo
 %attr(755,root,root) %{_bindir}/isovfy
 %attr(755,root,root) %{_bindir}/isodump
+# needs check
+%attr(755,root,root) %{_bindir}/dirsplit
+%attr(755,root,root) %{_bindir}/pitchplay
+#
 %{_mandir}/man1/isodebug.1*
 %{_mandir}/man1/isoinfo.1*
 %{_mandir}/man1/devdump.1*
 %{_mandir}/man1/isovfy.1*
 %{_mandir}/man1/isodump.1*
+# needs check
+%{_mandir}/man1/dirsplit.1*
+%{_mandir}/man1/list_audio_tracks.1*
+%{_mandir}/man1/pitchplay.1*
+#
 
 %files mkisofs
 %defattr(644,root,root,755)
