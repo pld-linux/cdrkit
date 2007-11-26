@@ -6,7 +6,7 @@ Summary(ru.UTF-8):	Программа для записи CD/DVD, запуска
 Summary(uk.UTF-8):	Програма для запису CD/DVD, яка запускається з командної стрічки
 Name:		cdrkit
 Version:	1.1.6
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://debburn.alioth.debian.org/%{name}-%{version}.tar.gz
@@ -270,6 +270,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/icedax
 %attr(755,root,root) %{_bindir}/cdda2mp3
 %attr(755,root,root) %{_bindir}/cdda2ogg
+%attr(755,root,root) %{_bindir}/cdda2wav
 %{_mandir}/man1/icedax.1*
 %{_mandir}/man1/cdda2ogg.1*
 
