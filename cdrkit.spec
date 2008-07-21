@@ -5,12 +5,12 @@ Summary(pt_BR.UTF-8):	Um programa de gravação de CD/DVD
 Summary(ru.UTF-8):	Программа для записи CD/DVD, запускаемая из командной строки
 Summary(uk.UTF-8):	Програма для запису CD/DVD, яка запускається з командної стрічки
 Name:		cdrkit
-Version:	1.1.7.1
+Version:	1.1.8
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://cdrkit.org/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	aed780a5b70c7ec021baebe4a6785a6e
+# Source0-md5:	97a9ea4e1bf59beb12aca649958d8c6c
 URL:		http://cdrkit.org/
 BuildRequires:	cmake >= 2.4.3
 BuildRequires:	libcap-devel
