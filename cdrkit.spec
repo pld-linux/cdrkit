@@ -12,9 +12,11 @@ Group:		Applications/System
 Source0:	http://cdrkit.org/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	3c25505d567113c269dc6e71640646d8
 URL:		http://cdrkit.org/
+BuildRequires:	bzip2-devel
 BuildRequires:	cmake >= 2.4.3
 BuildRequires:	libcap-devel
 BuildRequires:	libmagic-devel
+BuildRequires:	zlib-devel
 Provides:	cdrecord
 Obsoletes:	cdrecord
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
