@@ -239,6 +239,7 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_libdir},%{_includedir}/cdrkit/usal}
 
 ln -s wodim $RPM_BUILD_ROOT%{_bindir}/cdrecord
 ln -s icedax $RPM_BUILD_ROOT%{_bindir}/cdda2wav
+ln -s icedax $RPM_BUILD_ROOT%{_bindir}/list_audio_tracks
 ln -s genisoimage $RPM_BUILD_ROOT%{_bindir}/mkisofs
 ln -s readom $RPM_BUILD_ROOT%{_bindir}/readcd
 
@@ -253,8 +254,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ABOUT FAQ FORK TODO Changelog
-%doc doc/ANNO* doc/README* doc/wodim
+%doc ABOUT FAQ FORK TODO Changelog %doc doc/{ANNOUNCEMENTs,READMEs,wodim,WHY}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/wodim.conf
 %attr(755,root,root) %{_bindir}/wodim
 %attr(755,root,root) %{_bindir}/cdrecord
@@ -263,7 +263,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libedc.a
+%{_libdir}/libhfs_iso.a
+%{_libdir}/libparanoia.a
+%{_libdir}/librols.a
+%{_libdir}/libunls.a
+%{_libdir}/libusal.a
+%{_libdir}/libwodimstuff.a
 %{_includedir}/cdrkit
 
 %files cdda2wav
@@ -273,35 +279,35 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/cdda2mp3
 %attr(755,root,root) %{_bindir}/cdda2ogg
 %attr(755,root,root) %{_bindir}/cdda2wav
-%{_mandir}/man1/icedax.1*
+%attr(755,root,root) %{_bindir}/list_audio_tracks
+%attr(755,root,root) %{_bindir}/pitchplay
+%attr(755,root,root) %{_bindir}/readmult
 %{_mandir}/man1/cdda2ogg.1*
+%{_mandir}/man1/icedax.1*
+%{_mandir}/man1/list_audio_tracks.1*
+%{_mandir}/man1/pitchplay.1*
+%{_mandir}/man1/readmult.1*
 
 %files readcd
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/read*
-%{_mandir}/man1/read*.1*
+%attr(755,root,root) %{_bindir}/readcd
+%attr(755,root,root) %{_bindir}/readom
+%{_mandir}/man1/readom.1*
 
 %files utils
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/devdump
+%attr(755,root,root) %{_bindir}/dirsplit
 %attr(755,root,root) %{_bindir}/isodebug
+%attr(755,root,root) %{_bindir}/isodump
 %attr(755,root,root) %{_bindir}/isoinfo
 %attr(755,root,root) %{_bindir}/isovfy
-%attr(755,root,root) %{_bindir}/isodump
-# needs check
-%attr(755,root,root) %{_bindir}/dirsplit
-%attr(755,root,root) %{_bindir}/pitchplay
-#
-%{_mandir}/man1/isodebug.1*
-%{_mandir}/man1/isoinfo.1*
 %{_mandir}/man1/devdump.1*
-%{_mandir}/man1/isovfy.1*
-%{_mandir}/man1/isodump.1*
-# needs check
 %{_mandir}/man1/dirsplit.1*
-%{_mandir}/man1/list_audio_tracks.1*
-%{_mandir}/man1/pitchplay.1*
-#
+%{_mandir}/man1/isodebug.1*
+%{_mandir}/man1/isodump.1*
+%{_mandir}/man1/isoinfo.1*
+%{_mandir}/man1/isovfy.1*
 
 %files mkisofs
 %defattr(644,root,root,755)
