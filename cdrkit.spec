@@ -11,6 +11,7 @@ License:	GPL v2
 Group:		Applications/System
 Source0:	http://cdrkit.org/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	efe08e2f3ca478486037b053acd512e9
+Patch0:		%{name}-format-security.patch
 URL:		http://cdrkit.org/
 BuildRequires:	bzip2-devel
 BuildRequires:	cmake >= 2.4.3
@@ -221,6 +222,7 @@ fazer CD-ROMs de boot "El Torito".
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__make} \
