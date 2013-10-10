@@ -6,16 +6,35 @@ Summary(ru.UTF-8):	Программа для записи CD/DVD, запуска
 Summary(uk.UTF-8):	Програма для запису CD/DVD, яка запускається з командної стрічки
 Name:		cdrkit
 Version:	1.1.11
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://cdrkit.org/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	efe08e2f3ca478486037b053acd512e9
-Patch0:		%{name}-format-security.patch
+Patch0:		%{name}-1.1.8-werror.patch
+Patch1:		%{name}-1.1.9-efi-boot.patch
+Patch2:		%{name}-1.1.9-no_mp3.patch
+Patch3:		%{name}-1.1.9-buffer_overflow.patch
+Patch4:		%{name}-1.1.10-build-fix.patch
+Patch5:		%{name}-1.1.11-manpagefix.patch
+Patch6:		%{name}-1.1.11-rootstat.patch
+Patch7:		%{name}-1.1.11-usalinst.patch
+Patch8:		%{name}-1.1.11-readsegfault.patch
+Patch9:		%{name}-1.1.11-format.patch
+Patch10:	%{name}-1.1.11-handler.patch
+Patch11:	%{name}-1.1.11-dvdman.patch
+Patch12:	%{name}-1.1.11-paranoiacdda.patch
+Patch13:	%{name}-1.1.11-utf8.patch
+Patch14:	%{name}-1.1.11-cmakewarn.patch
+Patch15:	%{name}-1.1.11-memset.patch
+Patch16:	%{name}-1.1.11-paranoiacdio.patch
+Patch17:	%{name}-build.patch
 URL:		http://cdrkit.org/
 BuildRequires:	bzip2-devel
+BuildRequires:	cdparanoia-III-devel
 BuildRequires:	cmake >= 2.4.3
 BuildRequires:	libcap-devel
+BuildRequires:	libcdio-paranoia-devel
 BuildRequires:	libmagic-devel
 BuildRequires:	zlib-devel
 Provides:	cdrecord
@@ -223,6 +242,23 @@ fazer CD-ROMs de boot "El Torito".
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+#%patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch10 -p1
+%patch11 -p1
+%patch12 -p1
+%patch13 -p1
+%patch14 -p1
+%patch15 -p1
+%patch16 -p1
+%patch17 -p1
 
 %build
 %{__make} \
@@ -267,7 +303,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libedc.a
 %{_libdir}/libhfs_iso.a
-%{_libdir}/libparanoia.a
 %{_libdir}/librols.a
 %{_libdir}/libunls.a
 %{_libdir}/libusal.a

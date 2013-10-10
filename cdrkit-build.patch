@@ -1,0 +1,31 @@
+--- cdrkit-1.1.11/genisoimage/genisoimage.c~	2013-10-10 22:12:08.000000000 +0200
++++ cdrkit-1.1.11/genisoimage/genisoimage.c	2013-10-10 22:13:56.748278449 +0200
+@@ -3415,7 +3415,7 @@
+ 	if (goof) {
+ 		fprintf(stderr, "ISO9660/Rock Ridge tree sort failed.\n");
+ 		if(merge_warn_msg)
+-			fprintf(stderr, merge_warn_msg);
++			fprintf(stderr, "%s", merge_warn_msg);
+ 		exit(1);
+ 	}
+ #ifdef UDF
+@@ -3428,7 +3428,7 @@
+ 	if (goof) {
+ 		fprintf(stderr, "Joliet tree sort failed. The -joliet-long switch may help you.\n");
+ 		if(merge_warn_msg)
+-			fprintf(stderr, merge_warn_msg);
++			fprintf(stderr, "%s", merge_warn_msg);
+ 		exit(1);
+ 	}
+ 	/*
+--- cdrkit-1.1.11/genisoimage/tree.c~	2013-10-10 22:14:34.000000000 +0200
++++ cdrkit-1.1.11/genisoimage/tree.c	2013-10-10 22:16:22.318372090 +0200
+@@ -648,7 +648,7 @@
+      fprintf(stderr, "Unable to sort directory %s\n",
+            this_dir->whole_name);
+      if(merge_warn_msg)
+-        fprintf(stderr, merge_warn_msg);
++        fprintf(stderr, "%s", merge_warn_msg);
+      exit(1);
+ 	}
+ 	/*
