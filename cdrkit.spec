@@ -6,7 +6,7 @@ Summary(ru.UTF-8):	Программа для записи CD/DVD, запуска
 Summary(uk.UTF-8):	Програма для запису CD/DVD, яка запускається з командної стрічки
 Name:		cdrkit
 Version:	1.1.11
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://cdrkit.org/releases/%{name}-%{version}.tar.gz
@@ -280,12 +280,13 @@ ln -s icedax $RPM_BUILD_ROOT%{_bindir}/cdda2wav
 ln -s icedax $RPM_BUILD_ROOT%{_bindir}/list_audio_tracks
 ln -s genisoimage $RPM_BUILD_ROOT%{_bindir}/mkisofs
 ln -s readom $RPM_BUILD_ROOT%{_bindir}/readcd
+echo '.so man1/genisoimage.1' > $RPM_BUILD_ROOT%{_mandir}/man1/mkisofs.1
 
-install build/*/*.a $RPM_BUILD_ROOT%{_libdir}
-install include/*.h $RPM_BUILD_ROOT%{_includedir}/cdrkit
-install include/usal/*.h $RPM_BUILD_ROOT%{_includedir}/cdrkit/usal
+cp -p build/*/*.a $RPM_BUILD_ROOT%{_libdir}
+cp -p include/*.h $RPM_BUILD_ROOT%{_includedir}/cdrkit
+cp -p include/usal/*.h $RPM_BUILD_ROOT%{_includedir}/cdrkit/usal
 
-install wodim/wodim.dfl $RPM_BUILD_ROOT%{_sysconfdir}/wodim.conf
+cp -p wodim/wodim.dfl $RPM_BUILD_ROOT%{_sysconfdir}/wodim.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -351,5 +352,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/genisoimage/*
 %attr(755,root,root) %{_bindir}/mkisofs
 %attr(755,root,root) %{_bindir}/genisoimage
+%{_mandir}/man1/mkisofs.1*
 %{_mandir}/man1/genisoimage.1*
 %{_mandir}/man5/genisoimagerc.5*
