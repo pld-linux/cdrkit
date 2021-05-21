@@ -29,6 +29,7 @@ Patch14:	%{name}-1.1.11-cmakewarn.patch
 Patch15:	%{name}-1.1.11-memset.patch
 Patch16:	%{name}-1.1.11-paranoiacdio.patch
 Patch17:	%{name}-build.patch
+Patch18:	gcc10.patch
 URL:		http://cdrkit.org/
 BuildRequires:	bzip2-devel
 BuildRequires:	cdparanoia-III-devel
@@ -259,6 +260,7 @@ fazer CD-ROMs de boot "El Torito".
 %patch15 -p1
 %patch16 -p1
 %patch17 -p1
+%patch18 -p1
 
 %build
 %{__make} \
