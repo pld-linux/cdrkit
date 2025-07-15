@@ -249,7 +249,7 @@ fazer CD-ROMs de boot "El Torito".
 %patch -P4 -p1
 %patch -P5 -p1
 %patch -P6 -p1
-#%patch7 -p1
+#%%patch7 -p1
 %patch -P8 -p1
 %patch -P9 -p1
 %patch -P10 -p1
